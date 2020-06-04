@@ -28,10 +28,12 @@ for test_case in range(1, T+1):
     q = []
     heappush(q, [0, 0, 0])
     while q:
-        i, j, time = heappop(q)
+        time, i, j= heappop(q)
         for d in range(4):
-            ni, nj = i + di[d], j + dj[d]
-            if 0 <= ni < N and 0 <= nj < N and time + arr[ni][nj] < v[ni][nj]:
-                v[ni][nj] = time + arr[ni][nj]
-                heappush(q, [ni, nj, v[ni][nj]])
+            ni, nj = i+di[d], j+dj[d]
+            if 0<=ni<N and 0<=nj<N:
+                tmp = time + arr[ni][nj]
+                if tmp < v[ni][nj]:
+                    v[ni][nj] = tmp
+                    heappush(q, [tmp, ni, nj])
     print('#{} {}'.format(test_case, v[N-1][N-1]))
