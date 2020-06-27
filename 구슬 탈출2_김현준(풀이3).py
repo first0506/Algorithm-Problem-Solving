@@ -29,7 +29,9 @@ for i in range(N):
         elif arr[i][j]=='B':
             B = [i, j]
             arr[i][j] = '.'
-
+# 구슬이 있었던 자리 모두 저장
+visited = []
+visited.append([R[0], R[1], B[0], B[1]])
 q = deque()
 q.append([R[0], R[1], B[0], B[1], 1])
 while q:
@@ -71,9 +73,10 @@ while q:
                         newRj -= dj[d]
                     else:
                         newBj -= dj[d]
-            # 기울이기 전 좌표와 다르다면 큐에 추가
-            if [Ri, Rj, Bi, Bj] != [newRi, newRj, newBi, newBj]:
+            # 새로운 구슬 위치라면
+            if [newRi, newRj, newBi, newBj] not in visited:
                 q.append([newRi, newRj, newBi, newBj, cnt+1])
+                visited.append([newRi, newRj, newBi, newBj])
     # 빨간 구슬만 빠지면 break
     if complete:
         break
