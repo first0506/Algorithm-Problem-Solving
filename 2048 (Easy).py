@@ -1,3 +1,4 @@
+import pprint
 def rotate(arr):
     arr1 = [[0]*N for _ in range(N)]
     for i in range(N):
@@ -29,6 +30,8 @@ def up(arr):
 
 def move(arr, k):
     global ans
+    print(k)
+    pprint.pprint(arr)
     if k == 5:
         for i in range(N):
             for j in range(N):
